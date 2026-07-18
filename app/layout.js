@@ -48,12 +48,12 @@ export const metadata = {
     follow: true,
   },
 
-  verification: {
-    google: "EXZvC36kiUlMwz7Ltn8n8c954qZFuu2Nqy14TMxgDvw",
-  },
+verification: {
+  google: "856fmXU1t7GzHG8mfG2JUoY-x5hz3nV3NCUCq_CM5pc",
+},
 
   openGraph: {
-    title: "ChatViper – Anonymous Random Chat",
+    title: "ChatViper-Anonymous Random Chat",
     description:
       "Connect with random strangers instantly. Safe and anonymous text chat.",
     url: "https://chatviper.vercel.app",
@@ -72,7 +72,7 @@ export const metadata = {
 
   twitter: {
     card: "summary_large_image",
-    title: "ChatViper – Anonymous Random Chat",
+    title: "ChatViper-Anonymous Random Chat",
     description:
       "Connect with random strangers instantly. Safe and anonymous text chat.",
     creator: "@chatviper",
