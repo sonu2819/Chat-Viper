@@ -205,7 +205,7 @@ export default function ChatPage() {
     }
   }
 return (
-  <main className="chat-main">
+  <div className="chat-page">
     <div className="chat-container">
       <h1 className="chat-status-title">{status}</h1>
 
@@ -306,7 +306,7 @@ return (
         </div>
       )}
     </div>
-  </main>
+  </div>
 );
  
 };

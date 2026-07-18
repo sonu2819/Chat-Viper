@@ -51,34 +51,33 @@ export const metadata = {
 verification: {
   google: "856fmXU1t7GzHG8mfG2JUoY-x5hz3nV3NCUCq_CM5pc",
 },
+openGraph: {
+  title: "ChatViper-Anonymous Random Chat",
+  description:
+    "Connect with random strangers instantly. Safe and anonymous text chat.",
+  url: "https://chatviper.vercel.app",
+  siteName: "ChatViper",
+  locale: "en_US",
+  type: "website",
+  images: [
+    {
+      url: "/preview.png",
+      width: 1200,
+      height: 630,
+      alt: "ChatViper Preview",
+    },
+  ],
+},
 
-  openGraph: {
-    title: "ChatViper-Anonymous Random Chat",
-    description:
-      "Connect with random strangers instantly. Safe and anonymous text chat.",
-    url: "https://chatviper.vercel.app",
-    siteName: "ChatViper",
-    locale: "en_US",
-    type: "website",
-    images: [
-      {
-        url: "/og-image.png",
-        width: 1200,
-        height: 630,
-        alt: "ChatViper",
-      },
-    ],
-  },
-
-  twitter: {
-    card: "summary_large_image",
-    title: "ChatViper-Anonymous Random Chat",
-    description:
-      "Connect with random strangers instantly. Safe and anonymous text chat.",
-    creator: "@chatviper",
-    site: "@chatviper",
-    images: ["/og-image.png"],
-  },
+twitter: {
+  card: "summary_large_image",
+  title: "ChatViper-Anonymous Random Chat",
+  description:
+    "Connect with random strangers instantly. Safe and anonymous text chat.",
+  creator: "@chatviper",
+  site: "@chatviper",
+  images: ["/preview.png"],
+},
 
   icons: {
     icon: "/favicon.ico",
@@ -112,15 +111,21 @@ export const viewport = {
   ],
 };
 
+
 export default function RootLayout({ children }) {
   return (
     <html
       lang="en"
+      suppressHydrationWarning
       className={`${geistSans.variable} ${geistMono.variable}`}
     >
       <body>
         <Header />
-        <main className="app-main">{children}</main>
+
+        <main className="app-main">
+          {children}
+        </main>
+
         <Footer />
       </body>
     </html>

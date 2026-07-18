@@ -6,7 +6,7 @@ export default function Home() {
   const router = useRouter();
 
   return (
-    <main className="app-main">
+    <div className="chat-main">
       <div className="home-container">
         <h1 className="home-title">
           Welcome to ChatViper
@@ -25,6 +25,6 @@ export default function Home() {
           Start Text Chat
         </button>
       </div>
-    </main>
+    </div>
   );
 }
