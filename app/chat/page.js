@@ -204,198 +204,109 @@ export default function ChatPage() {
       });
     }
   }
+return (
+  <main className="chat-main">
+    <div className="chat-container">
+      <h1 className="chat-status-title">{status}</h1>
 
-  return (
-    <main style={styles.main}>
-      <div style={styles.container}>
-        <h1 style={styles.statusTitle}>{status}</h1>
-        {isSearching && <div style={styles.spinner}>⏳ Searching...</div>}
+      {isSearching && (
+        <div className="chat-spinner">⏳ Searching...</div>
+      )}
 
-        {match ? (
-          <>
-            <div style={styles.chatBox}>
-              {messages.length === 0 ? (
-                <p style={styles.emptyMessage}>Say hello 👋</p>
-              ) : (
-                messages.map((msg) => {
-                  // System message styling
-                  if (msg.isSystem) {
-                    return (
-                      <div key={msg.id} style={styles.systemMessage}>
-                        {msg.text}
-                      </div>
-                    );
-                  }
+      {match ? (
+        <>
+          <div className="chat-box">
+            {messages.length === 0 ? (
+              <p className="chat-empty-message">
+                Say hello 👋
+              </p>
+            ) : (
+              messages.map((msg) => {
+                if (msg.isSystem) {
                   return (
                     <div
                       key={msg.id}
-                      style={{
-                        ...styles.messageWrapper,
-                        justifyContent:
-                          msg.senderId === userId ? "flex-end" : "flex-start",
-                      }}
+                      className="chat-system-message"
                     >
-                      <div
-                        style={{
-                          ...styles.bubble,
-                          background:
-                            msg.senderId === userId ? "#2563eb" : "#374151",
-                        }}
-                      >
-                        {msg.text}
-                      </div>
+                      {msg.text}
                     </div>
                   );
-                })
-              )}
-              <div ref={messagesEndRef} />
-            </div>
+                }
 
-            <div style={styles.inputRow}>
-              <input
-                value={text}
-                onChange={(e) => setText(e.target.value)}
-                placeholder="Type a message..."
-                style={styles.input}
-                onKeyDown={(e) => e.key === "Enter" && handleSend()}
-              />
-              <button onClick={handleSend} style={styles.sendBtn}>
-                Send
-              </button>
-              <button onClick={handleNext} style={styles.nextBtn}>
-                Next
-              </button>
-            </div>
-          </>
-        ) : (
-          <div style={styles.waitingContainer}>
-            <p style={styles.waitingText}>
-              {isSearching
-                ? "Searching..."
-                : "No match yet. Press Next to find someone."}
-            </p>
-            {!isSearching && (
-              <button onClick={handleNext} style={styles.findBtn}>
-                Find a stranger
-              </button>
+                return (
+                  <div
+                    key={msg.id}
+                    className="chat-message-wrapper"
+                    style={{
+                      justifyContent:
+                        msg.senderId === userId
+                          ? "flex-end"
+                          : "flex-start",
+                    }}
+                  >
+                    <div
+                      className={`chat-bubble ${
+                        msg.senderId === userId
+                          ? "sent"
+                          : "received"
+                      }`}
+                    >
+                      {msg.text}
+                    </div>
+                  </div>
+                );
+              })
             )}
-          </div>
-        )}
-      </div>
-    </main>
-  );
-}
 
-// Styles
-const styles = {
-  main: {
-    minHeight: "100vh",
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    background: "#111827",
-    color: "#fff",
-    fontFamily: "Arial, sans-serif",
-    padding: "20px",
-  },
-  container: {
-    width: "100%",
-    maxWidth: "600px",
-    background: "#1f2937",
-    borderRadius: "12px",
-    padding: "24px",
-    boxSizing: "border-box",
-  },
-  statusTitle: {
-    fontSize: "1.5rem",
-    marginBottom: "0.5rem",
-    textAlign: "center",
-  },
-  spinner: {
-    textAlign: "center",
-    margin: "1rem 0",
-    color: "#9ca3af",
-  },
-  chatBox: {
-    height: "350px",
-    overflowY: "auto",
-    background: "#111827",
-    borderRadius: "10px",
-    padding: "15px",
-    marginBottom: "20px",
-    display: "flex",
-    flexDirection: "column",
-  },
-  emptyMessage: {
-    color: "#6b7280",
-    textAlign: "center",
-    marginTop: "auto",
-    marginBottom: "auto",
-  },
-  messageWrapper: {
-    display: "flex",
-    marginBottom: "12px",
-  },
-  bubble: {
-    color: "#fff",
-    padding: "10px 14px",
-    borderRadius: "15px",
-    maxWidth: "70%",
-    wordBreak: "break-word",
-  },
-  systemMessage: {
-    textAlign: "center",
-    color: "#9ca3af",
-    fontSize: "0.9rem",
-    margin: "8px 0",
-    fontStyle: "italic",
-  },
-  inputRow: {
-    display: "flex",
-    gap: "10px",
-  },
-  input: {
-    flex: 1,
-    padding: "12px",
-    borderRadius: "8px",
-    border: "none",
-    outline: "none",
-    fontSize: "1rem",
-  },
-  sendBtn: {
-    padding: "12px 20px",
-    borderRadius: "8px",
-    border: "none",
-    background: "#2563eb",
-    color: "#fff",
-    cursor: "pointer",
-    fontWeight: "bold",
-  },
-  nextBtn: {
-    padding: "12px 20px",
-    borderRadius: "8px",
-    border: "none",
-    background: "#ef4444",
-    color: "#fff",
-    cursor: "pointer",
-    fontWeight: "bold",
-  },
-  waitingContainer: {
-    textAlign: "center",
-    padding: "2rem 0",
-  },
-  waitingText: {
-    color: "#9ca3af",
-    marginBottom: "1rem",
-  },
-  findBtn: {
-    padding: "12px 24px",
-    borderRadius: "8px",
-    border: "none",
-    background: "#2563eb",
-    color: "#fff",
-    cursor: "pointer",
-    fontWeight: "bold",
-    fontSize: "1rem",
-  },
+            <div ref={messagesEndRef} />
+          </div>
+
+          <div className="chat-input-row">
+            <input
+              className="chat-input"
+              value={text}
+              onChange={(e) => setText(e.target.value)}
+              placeholder="Type a message..."
+              onKeyDown={(e) =>
+                e.key === "Enter" && handleSend()
+              }
+            />
+
+            <button
+              className="chat-send-btn"
+              onClick={handleSend}
+            >
+              Send
+            </button>
+
+            <button
+              className="chat-next-btn"
+              onClick={handleNext}
+            >
+              Next
+            </button>
+          </div>
+        </>
+      ) : (
+        <div className="chat-waiting-container">
+          <p className="chat-waiting-text">
+            {isSearching
+              ? "Searching..."
+              : "No match yet. Press Next to find someone."}
+          </p>
+
+          {!isSearching && (
+            <button
+              className="chat-find-btn"
+              onClick={handleNext}
+            >
+              Find a stranger
+            </button>
+          )}
+        </div>
+      )}
+    </div>
+  </main>
+);
+ 
 };

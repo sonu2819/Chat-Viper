@@ -16,7 +16,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata = {
-  metadataBase: new URL("https://chatviper.vercel.app"), // Change to your production URL
+  metadataBase: new URL("https://chatviper.vercel.app"),
 
   title: {
     default: "ChatViper – Anonymous Random Chat",
@@ -48,6 +48,10 @@ export const metadata = {
     follow: true,
   },
 
+  verification: {
+    google: "EXZvC36kiUlMwz7Ltn8n8c954qZFuu2Nqy14TMxgDvw",
+  },
+
   openGraph: {
     title: "ChatViper – Anonymous Random Chat",
     description:
@@ -77,23 +81,9 @@ export const metadata = {
   },
 
   icons: {
-    icon: [
-      {
-        url: "/favicon.ico",
-        sizes: "any",
-      },
-      {
-        url: "/icon.png",
-        type: "image/png",
-      },
-    ],
-    apple: {
-      url: "/apple-icon.png",
-    },
+    icon: "/favicon.ico",
     shortcut: "/favicon.ico",
   },
-
-
 
   appleWebApp: {
     capable: true,
@@ -106,7 +96,6 @@ export const metadata = {
   },
 };
 
-// ✅ Next.js 16 requires viewport/themeColor here
 export const viewport = {
   width: "device-width",
   initialScale: 1,
