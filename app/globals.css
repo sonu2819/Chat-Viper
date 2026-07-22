@@ -39,17 +39,16 @@ input{
 /* =========================================================
    Main Layout
 ========================================================= */
-
 .app-main{
-  width:100%;
-  min-height:100vh;
+    width:100%;
+    min-height:calc(100dvh - 116px);
 
-  padding-top:60px;
-  padding-bottom:56px;
+    padding-top:60px;
+    padding-bottom:110px; /* instead of 56px */
 
-  display:flex;
-  justify-content:center;
-  align-items:center;
+    display:flex;
+    justify-content:center;
+    align-items:center;
 }
 
 /* =========================================================
@@ -80,15 +79,57 @@ input{
 }
 
 .app-logo{
-  font-size:30px;
-  font-weight:800;
+    display:flex;
+    align-items:center;
+    gap:12px;
 
-  background:linear-gradient(90deg,#4f7cff,#8b5cf6);
+    font-size:2.2rem;
+    font-weight:800;
+    line-height:1;
 
-  -webkit-background-clip:text;
-  -webkit-text-fill-color:transparent;
+    text-decoration:none;
+    white-space:nowrap;
+
+    background:linear-gradient(90deg,#4f7cff,#8b5cf6);
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
 }
 
+.app-logo img{
+    display:block;
+    width:42px;
+    height:42px;
+    margin-top: 8px;
+
+    object-fit:contain;
+    object-position:center;
+
+    flex-shrink:0;
+
+    /* Compensate for transparent padding in the logo */
+    transform:translateY(2px) scale(1.2);
+}
+
+.app-logo span{
+    display:flex;
+    align-items:center;
+    line-height:1;
+}
+
+@media (max-width:768px){
+
+    .app-logo{
+        gap:10px;
+        font-size:1.9rem;
+    }
+
+    .app-logo img{
+        width:36px;
+        height:36px;
+        transform:translateY(2px) scale(1.2);
+    }
+
+}
 .menu-toggle{
   width:34px;
   height:28px;
@@ -144,35 +185,76 @@ input{
 /* =========================================================
    Footer
 ========================================================= */
+/* ===========================
+   Footer
+=========================== */
 
 .app-footer{
+    position:fixed;
+    left:0;
+    right:0;
+    bottom:0;
 
-  position:fixed;
+    background:#1f2937;
+    border-top:1px solid #374151;
 
-  left:0;
-  right:0;
-  bottom:0;
+    padding:10px 20px;
 
-  height:56px;
-
-  display:flex;
-  justify-content:center;
-  align-items:center;
-
-  background:#1f2937;
-
-  border-top:1px solid #374151;
-
-  color:#9ca3af;
-
-  font-size:.9rem;
-
-  z-index:1000;
+    z-index:1000;
 }
 
 .footer-content{
-  width:min(1200px,100%);
-  text-align:center;
+    max-width:1200px;
+    margin:auto;
+
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:8px;
+}
+
+.footer-links{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:22px;
+    flex-wrap:wrap;
+}
+
+.footer-links a{
+    color:#d1d5db;
+    font-size:.95rem;
+    font-weight:500;
+    transition:.2s;
+}
+
+.footer-links a:hover{
+    color:#4f7cff;
+}
+
+.footer-copy{
+    color:#9ca3af;
+    font-size:.85rem;
+    text-align:center;
+}
+
+@media (max-width:768px){
+
+    .app-footer{
+        padding:10px 16px;
+    }
+
+    .footer-links{
+        gap:14px;
+    }
+
+    .footer-links a{
+        font-size:.85rem;
+    }
+
+    .footer-copy{
+        font-size:.75rem;
+    }
 }
 
 /* =========================================================
@@ -182,7 +264,7 @@ input{
     width:100%;
     max-width:1200px;
 
-    min-height:calc(100vh - 140px);
+    min-height:auto;
 
     margin:0 auto;
 
@@ -193,7 +275,7 @@ input{
 
     text-align:center;
 
-    padding:40px 20px;
+    padding:60px 20px;
 }
 .home-title{
     font-size:clamp(3rem,6vw,5rem);
@@ -582,9 +664,7 @@ background:#1d4ed8;
 
   .app-main{
 
-    padding-top:60px;
-    padding-bottom:56px;
-
+     min-height:auto;
     align-items:stretch;
   }
 
@@ -751,3 +831,167 @@ background:#1d4ed8;
 
 }
 
+
+
+
+/* css for pages */
+
+
+.page-container{
+    width:100%;
+    max-width:900px;
+
+    margin:0 auto;
+    padding:50px 24px;
+
+    color:#fff;
+
+    text-align:center;
+}
+
+.page-container h1{
+    font-size:clamp(2.5rem,5vw,4rem);
+    font-weight:800;
+
+    margin-bottom:24px;
+
+    background:linear-gradient(90deg,#4a6cf7,#8b5cf6);
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+}
+
+.page-container h2{
+    font-size:1.8rem;
+    font-weight:700;
+
+    margin-top:35px;
+    margin-bottom:16px;
+
+    text-align:center;
+}
+
+.page-container p{
+    max-width:800px;
+
+    margin:0 auto 20px;
+
+    font-size:1.15rem;
+    line-height:1.9;
+
+    color:#b7c0d8;
+}
+
+.page-container ul{
+    max-width:700px;
+
+    margin: auto;
+  
+ 
+
+   list-style-type:none;
+    padding:0;
+}
+
+.page-container li{
+    font-size:1.1rem;
+    line-height:1.9;
+
+    margin-bottom:10px;
+
+    color:#b7c0d8;
+    
+}
+
+
+@media (max-width:768px){
+
+    .page-container{
+        padding:35px 18px;
+    }
+
+    .page-container h1{
+        font-size:2.2rem;
+    }
+
+    .page-container h2{
+        font-size:1.4rem;
+    }
+
+    .page-container p,
+    .page-container li{
+        font-size:1rem;
+        
+    }
+}
+
+
+
+
+/* ===========================
+   Features Page
+=========================== */
+
+.features-intro{
+    max-width:700px;
+    margin:0 auto 45px;
+}
+
+.features-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:24px;
+    margin-top:20px;
+}
+
+.feature-card{
+    background:#1f2937;
+    border:1px solid #374151;
+    border-radius:18px;
+    padding:30px 24px;
+    text-align:center;
+
+    transition:all .25s ease;
+}
+
+.feature-card:hover{
+    transform:translateY(-6px);
+    border-color:#4a6cf7;
+    box-shadow:0 15px 35px rgba(74,108,247,.18);
+}
+
+.feature-icon{
+    font-size:3rem;
+    margin-bottom:18px;
+}
+
+.feature-card h2{
+    margin:0 0 12px;
+    font-size:1.4rem;
+    color:#fff;
+}
+
+.feature-card p{
+    margin:0;
+    font-size:1rem;
+    line-height:1.8;
+    color:#b7c0d8;
+}
+
+@media (max-width:768px){
+
+    .features-grid{
+        gap:18px;
+    }
+
+    .feature-card{
+        padding:24px 20px;
+    }
+
+    .feature-icon{
+        font-size:2.5rem;
+    }
+
+    .feature-card h2{
+        font-size:1.2rem;
+    }
+}
