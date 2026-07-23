@@ -37,6 +37,7 @@ export default function Header() {
         <nav className="menu-dropdown">
           <Link href="/" onClick={closeMenu}>Home</Link>
           <Link href="/chat" onClick={closeMenu}>Chat</Link>
+           <Link href="/video" onClick={closeMenu}>Video</Link>
           <Link href="/about" onClick={closeMenu}>About</Link>
           <Link href="/features" onClick={closeMenu}>Features</Link>
           <Link href="/privacy-policy" onClick={closeMenu}>Privacy</Link>
