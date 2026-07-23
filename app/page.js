@@ -18,12 +18,28 @@ export default function Home() {
           Meet new people, make friends, share ideas, or simply enjoy a casual conversation while staying completely anonymous.
         </p>
 
-        <button
-          className="home-button"
-          onClick={() => router.push("/chat")}
-        >
-          Start Text Chat
-        </button>
+       <div
+  style={{
+    display: "flex",
+    gap: "15px",
+    justifyContent: "center",
+    marginTop: "30px",
+  }}
+>
+  <button
+    className="home-button"
+    onClick={() => router.push("/chat")}
+  >
+    Start Text Chat
+  </button>
+
+  <button
+    className="home-button"
+    onClick={() => router.push("/video")}
+  >
+    Start Video Chat
+  </button>
+</div>
       </div>
     </div>
   );

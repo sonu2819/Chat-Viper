@@ -2,8 +2,7 @@
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
+import LayoutContent from "@/components/LayoutContent";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -48,36 +47,37 @@ export const metadata = {
     follow: true,
   },
 
-verification: {
-  google: "856fmXU1t7GzHG8mfG2JUoY-x5hz3nV3NCUCq_CM5pc",
-},
-openGraph: {
-  title: "ChatViper-Anonymous Random Chat",
-  description:
-    "Connect with random strangers instantly. Safe and anonymous text chat.",
-  url: "https://chatviper.vercel.app",
-  siteName: "ChatViper",
-  locale: "en_US",
-  type: "website",
-  images: [
-    {
-      url: "/preview.png",
-      width: 1200,
-      height: 630,
-      alt: "ChatViper Preview",
-    },
-  ],
-},
+  verification: {
+    google: "856fmXU1t7GzHG8mfG2JUoY-x5hz3nV3NCUCq_CM5pc",
+  },
 
-twitter: {
-  card: "summary_large_image",
-  title: "ChatViper-Anonymous Random Chat",
-  description:
-    "Connect with random strangers instantly. Safe and anonymous text chat.",
-  creator: "@chatviper",
-  site: "@chatviper",
-  images: ["/preview.png"],
-},
+  openGraph: {
+    title: "ChatViper-Anonymous Random Chat",
+    description:
+      "Connect with random strangers instantly. Safe and anonymous text chat.",
+    url: "https://chatviper.vercel.app",
+    siteName: "ChatViper",
+    locale: "en_US",
+    type: "website",
+    images: [
+      {
+        url: "/preview.png",
+        width: 1200,
+        height: 630,
+        alt: "ChatViper Preview",
+      },
+    ],
+  },
+
+  twitter: {
+    card: "summary_large_image",
+    title: "ChatViper-Anonymous Random Chat",
+    description:
+      "Connect with random strangers instantly. Safe and anonymous text chat.",
+    creator: "@chatviper",
+    site: "@chatviper",
+    images: ["/preview.png"],
+  },
 
   icons: {
     icon: "/favicon.ico",
@@ -111,7 +111,6 @@ export const viewport = {
   ],
 };
 
-
 export default function RootLayout({ children }) {
   return (
     <html
@@ -120,13 +119,9 @@ export default function RootLayout({ children }) {
       className={`${geistSans.variable} ${geistMono.variable}`}
     >
       <body>
-        <Header />
-
-        <main className="app-main">
+        <LayoutContent>
           {children}
-        </main>
-
-        <Footer />
+        </LayoutContent>
       </body>
     </html>
   );

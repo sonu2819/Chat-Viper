@@ -39,17 +39,7 @@ input{
 /* =========================================================
    Main Layout
 ========================================================= */
-.app-main{
-    width:100%;
-    min-height:calc(100dvh - 116px);
 
-    padding-top:60px;
-    padding-bottom:110px; /* instead of 56px */
-
-    display:flex;
-    justify-content:center;
-    align-items:center;
-}
 
 /* =========================================================
    Header
@@ -464,68 +454,65 @@ input{
    Input Area
 ========================================================= */
 
-
 .chat-input-row{
     display:flex;
-    gap:12px;
-
-    margin-top:15px;
+    align-items:center;
+    gap:10px;
+    width:100%;
 }
 
 .chat-input{
     flex:1;
     min-width:0;
-    height:48px;
-    padding:0 14px;
+
+    padding:14px 16px;
+
     border:none;
-    outline:none;
-    border-radius:10px;
-    font-size:16px;
+    border-radius:14px;
+
+    font-size:1rem;
 }
 
 .chat-send-btn,
-.chat-next-btn {
-  height: 52px;
-  min-width: 100px;
-  padding: 0 22px;
-
-  border: none;
-  border-radius: 10px;
-
-  font-size: 15px;
-  font-weight: 600;
-
-  color: #fff;
-  cursor: pointer;
-
-  transition: all 0.2s ease;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  flex-shrink: 0;
-}
-.chat-send-btn{
-
-  background:#1d4ed8;
-}
-.chat-send-btn:hover{
-
-  background:#1d4ed8;
-   transform:translateY(-2px);
-}
-
-
 .chat-next-btn{
+    width:56px;
+    height:56px;
 
-background:#1d4ed8;
+    flex-shrink:0;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    border:none;
+    border-radius:14px;
 }
 
-.chat-next-btn:hover{
-background:#1d4ed8;
- transform:translateY(-2px);
+.chat-send-btn svg,
+.chat-next-btn svg{
+    font-size:22px;
 }
+@media (max-width:768px){
+
+    .chat-input-row{
+        gap:8px;
+    }
+
+    .chat-input{
+        padding:12px 14px;
+        font-size:16px; /* Prevents iOS zoom */
+    }
+
+    .chat-send-btn,
+    .chat-next-btn{
+        width:30px;
+        height:30px;
+    }
+
+}
+
+
+
 
 /* =========================================================
    Waiting Screen
@@ -995,3 +982,4 @@ background:#1d4ed8;
         font-size:1.2rem;
     }
 }
+

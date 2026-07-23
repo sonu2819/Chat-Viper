@@ -3,6 +3,7 @@
 import { useEffect, useState, useRef } from "react";
 import { ref, get, remove } from "firebase/database";
 import { db } from "@/lib/firebase";
+import { FiSend, FiSkipForward, FiSearch } from "react-icons/fi";
 
 import { listenForMatch, endMatch, findAndMatch } from "@/services/match";
 import { joinQueue } from "@/services/queue";
@@ -273,18 +274,20 @@ return (
             />
 
             <button
-              className="chat-send-btn"
-              onClick={handleSend}
-            >
-              Send
-            </button>
+  className="chat-send-btn"
+  onClick={handleSend}
+>
+  <FiSend />
+  
+</button>
 
             <button
-              className="chat-next-btn"
-              onClick={handleNext}
-            >
-              Next
-            </button>
+  className="chat-next-btn"
+  onClick={handleNext}
+>
+  <FiSkipForward />
+ 
+</button>
           </div>
         </>
       ) : (
