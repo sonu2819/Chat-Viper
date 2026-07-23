@@ -13,24 +13,32 @@ const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
 });
-
 export const metadata = {
   metadataBase: new URL("https://chatviper.vercel.app"),
 
   title: {
-    default: "ChatViper – Anonymous Random Chat",
+    default: "ChatViper - Anonymous Random Text & Video Chat",
     template: "%s | ChatViper",
   },
 
   description:
-    "Connect instantly with random strangers. Safe, anonymous, and free text chat.",
+    "ChatViper lets you instantly connect with random strangers through anonymous text chat and video chat. No registration required. Free, fast, and private.",
 
   keywords: [
+    "ChatViper",
     "random chat",
     "anonymous chat",
+    "anonymous text chat",
+    "anonymous video chat",
+    "random video chat",
     "stranger chat",
+    "video chat with strangers",
     "text chat",
-    "ChatViper",
+    "online chat",
+    "meet new people",
+    "omegle alternative",
+    "free chat",
+    "video calling",
   ],
 
   authors: [
@@ -42,23 +50,44 @@ export const metadata = {
   creator: "ChatViper",
   publisher: "ChatViper",
 
+  applicationName: "ChatViper",
+
+  category: "Social Networking",
+
   robots: {
     index: true,
     follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
+    },
   },
 
   verification: {
     google: "856fmXU1t7GzHG8mfG2JUoY-x5hz3nV3NCUCq_CM5pc",
   },
 
+  alternates: {
+    canonical: "https://chatviper.vercel.app",
+  },
+
   openGraph: {
-    title: "ChatViper-Anonymous Random Chat",
+    title: "ChatViper - Anonymous Random Text & Video Chat",
+
     description:
-      "Connect with random strangers instantly. Safe and anonymous text chat.",
+      "Meet random people instantly through anonymous text chat and video chat. No signup required.",
+
     url: "https://chatviper.vercel.app",
+
     siteName: "ChatViper",
+
     locale: "en_US",
+
     type: "website",
+
     images: [
       {
         url: "/preview.png",
@@ -71,11 +100,14 @@ export const metadata = {
 
   twitter: {
     card: "summary_large_image",
-    title: "ChatViper-Anonymous Random Chat",
+
+    title: "ChatViper - Anonymous Random Text & Video Chat",
+
     description:
-      "Connect with random strangers instantly. Safe and anonymous text chat.",
+      "Connect instantly with strangers using anonymous text chat and video chat.",
+
     creator: "@chatviper",
-    site: "@chatviper",
+
     images: ["/preview.png"],
   },
 
@@ -92,9 +124,10 @@ export const metadata = {
 
   formatDetection: {
     telephone: false,
+    email: false,
+    address: false,
   },
 };
-
 export const viewport = {
   width: "device-width",
   initialScale: 1,

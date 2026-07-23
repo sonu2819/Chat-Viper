@@ -1,54 +1,64 @@
 export const metadata = {
-  title: "Features",
-  description: "Explore the features of ChatViper.",
+  title: "Features | ChatViper",
+  description:
+    "Discover ChatViper's anonymous text and video chat features.",
 };
 
 const features = [
   {
-    title: "Anonymous Chat",
-    description: "Chat with strangers without revealing your identity.",
-    icon: "🕵️",
-  },
-  {
-    title: "No Registration",
-    description: "Start chatting instantly without creating an account.",
-    icon: "⚡",
-  },
-  {
-    title: "Random Matching",
-    description: "Connect with random people from around the world.",
-    icon: "🎲",
-  },
-  {
-    title: "Fast Performance",
-    description: "Lightweight interface with instant loading.",
-    icon: "🚀",
-  },
-  {
-    title: "Mobile Friendly",
-    description: "Works perfectly on desktop, tablet, and mobile.",
-    icon: "📱",
-  },
-  {
-    title: "Privacy Focused",
-    description: "Your conversations stay anonymous and secure.",
-    icon: "🔒",
-  },
-  {
-    title: "Free Forever",
-    description: "Enjoy unlimited chatting without paying anything.",
+    title: "Anonymous Text Chat",
+    description:
+      "Chat instantly with random strangers without creating an account or sharing personal information.",
     icon: "💬",
   },
   {
-  title: "Real-Time Messaging",
-  description: "Send and receive messages instantly with no delays.",
-  icon: "💨",
-},
-{
-  title: "Safe & Moderated",
-  description: "Built-in moderation helps create a safer chatting experience.",
-  icon: "🛡️",
-},
+    title: "Anonymous Video Chat",
+    description:
+      "Start face-to-face conversations with random people while keeping your identity private.",
+    icon: "📹",
+  },
+  {
+    title: "Instant Random Matching",
+    description:
+      "Get matched with a new stranger in seconds and switch to someone new anytime.",
+    icon: "🎲",
+  },
+  {
+    title: "One-Click Next",
+    description:
+      "Skip your current conversation instantly and connect with another random person.",
+    icon: "⏭️",
+  },
+  {
+    title: "Real-Time Messaging",
+    description:
+      "Exchange messages instantly with smooth real-time communication.",
+    icon: "⚡",
+  },
+  {
+    title: "High-Quality Video",
+    description:
+      "Enjoy fast and responsive video conversations using WebRTC technology.",
+    icon: "🎥",
+  },
+  {
+    title: "Privacy First",
+    description:
+      "No registration, no usernames, and no permanent chat history.",
+    icon: "🔒",
+  },
+  {
+    title: "Cross-Platform",
+    description:
+      "Use ChatViper on desktop, tablet, or mobile with a responsive interface.",
+    icon: "📱",
+  },
+  {
+    title: "Completely Free",
+    description:
+      "Unlimited anonymous text and video chatting without subscriptions or hidden fees.",
+    icon: "🆓",
+  },
 ];
 
 export default function FeaturesPage() {
@@ -57,14 +67,21 @@ export default function FeaturesPage() {
       <h1>ChatViper Features</h1>
 
       <p className="features-intro">
-        Everything you need for a fast, anonymous, and enjoyable chatting
-        experience.
+        ChatViper combines anonymous text chatting and video chatting into one
+        simple platform. No registration is required—just choose your preferred
+        chat mode and connect with random people from around the world in
+        seconds.
       </p>
 
       <div className="features-grid">
         {features.map((feature) => (
-          <div key={feature.title} className="feature-card">
-            <div className="feature-icon">{feature.icon}</div>
+          <div
+            key={feature.title}
+            className="feature-card"
+          >
+            <div className="feature-icon">
+              {feature.icon}
+            </div>
 
             <h2>{feature.title}</h2>
 

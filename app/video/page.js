@@ -1,5 +1,4 @@
 "use client";
-
 import styles from "./video.module.css";
 import { useEffect, useRef, useState } from "react";
 import { get, ref } from "firebase/database";
@@ -14,18 +13,22 @@ import {
   closePeerConnection,
   getPeerConnection,
   listenIceCandidates,
-} from "@/services/webrtc";
+} from "@/services/video/webrtc";
 
 import {
   findAndMatch,
   listenForMatch,
   endMatch,
-} from "@/services/match";
+} from "@/services/video/match";
 
 import {
   sendWave,
   listenForWaves,
-} from "@/services/wave";
+} from "@/services/video/wave";
+import {
+  sendMessage,
+  listenMessages,
+} from "@/services/video/messages";
 
 export default function VideoPage() {
   const [userId, setUserId] = useState("");
@@ -33,6 +36,8 @@ export default function VideoPage() {
   const [status, setStatus] = useState("Looking for stranger...");
   const [isConnecting, setIsConnecting] = useState(false);
   const [showWave, setShowWave] = useState(false);
+  const [messages, setMessages] = useState([]);
+const [message, setMessage] = useState("");
 
   const localVideoRef = useRef(null);
   const remoteVideoRef = useRef(null);
@@ -43,7 +48,9 @@ export default function VideoPage() {
   const currentMatchIdRef = useRef(null);
 
   const waveListenerUnsub = useRef(null);
+  const messageListenerUnsub = useRef(null);
   const waveTimeoutRef = useRef(null);
+
 
   function generateId() {
     if (typeof crypto !== "undefined" && crypto.randomUUID) {
@@ -92,12 +99,27 @@ export default function VideoPage() {
     }
   }
 
+  function setupMessageListener(matchId) {
+  if (messageListenerUnsub.current) {
+    messageListenerUnsub.current();
+  }
+
+  const unsub = listenMessages(matchId, (msgs) => {
+    setMessages(msgs);
+  });
+
+  messageListenerUnsub.current = unsub;
+  listenersRef.current.push(unsub);
+}
+
+
   function setupWaveListener(matchId, selfId) {
     if (waveListenerUnsub.current) {
       waveListenerUnsub.current();
       waveListenerUnsub.current = null;
     }
 
+  
     const unsub = listenForWaves(
       matchId,
       selfId,
@@ -136,7 +158,19 @@ export default function VideoPage() {
     }, 1500);
   }
 
-  async function setupWebRTC(matchData, userId) {
+  async function handleSendMessage() {
+  if (!message.trim() || !match) return;
+
+  await sendMessage(
+    match.matchId,
+    userId,
+    message.trim()
+  );
+
+  setMessage("");
+}
+  async function setupWebRTC(
+    matchData, userId) {
     try {
       if (
         currentMatchIdRef.current ===
@@ -215,6 +249,7 @@ export default function VideoPage() {
         matchData.matchId,
         userId
       );
+      setupMessageListener(matchData.matchId);
 
       setStatus("Connected");
       setIsConnecting(false);
@@ -363,23 +398,31 @@ export default function VideoPage() {
     };
   }, []);
 
+
   return (
-    <div className={styles.page}>
-      <div className={styles.topBar}>
-        <h1>Video Chat</h1>
+  <div className={styles.page}>
 
-        <p className={styles.status}>
-          {status}
-        </p>
-      </div>
+    {/* Header */}
+    <div className={styles.topBar}>
+      <h1>Video Chat</h1>
+      <p className={styles.status}>{status}</p>
+    </div>
 
-      <div className={styles.videos}>
+    <div className={styles.content}>
+
+      {/* LEFT SIDE - VIDEOS */}
+      <div className={styles.videoPanel}>
+
         <div className={styles.remoteBox}>
           <video
             ref={remoteVideoRef}
             autoPlay
             playsInline
           />
+
+          <div className={styles.remoteLabel}>
+            Stranger
+          </div>
 
           <div className={styles.localBox}>
             <video
@@ -388,47 +431,75 @@ export default function VideoPage() {
               muted
               playsInline
             />
+
+            <div className={styles.localLabel}>
+              You
+            </div>
           </div>
         </div>
+
       </div>
 
-      <div className={styles.bottomBar}>
-        <button
-          onClick={handleNext}
-          disabled={isConnecting}
-          className={`${styles.button} ${styles.next} ${
-            isConnecting
-              ? styles.disabled
-              : ""
-          }`}
-        >
-          {isConnecting
-            ? "Connecting..."
-            : "Next"}
-        </button>
+      {/* RIGHT SIDE - CHAT */}
+      <div className={styles.chatPanel}>
 
-        <button
-          onClick={handleWave}
-          disabled={
-            !match || !match.matchId
-          }
-          className={`${styles.button} ${styles.wave} ${
-            !match || !match.matchId
-              ? styles.disabled
-              : ""
-          }`}
-        >
-          👋 Wave
-        </button>
-      </div>
-
-      {showWave && (
-        <div
-          className={styles.waveOverlay}
-        >
-          👋
+        <div className={styles.messages}>
+          {messages.map((msg) => (
+            <div
+              key={msg.id}
+              className={
+                msg.senderId === userId
+                  ? styles.myMessage
+                  : styles.otherMessage
+              }
+            >
+              {msg.text}
+            </div>
+          ))}
         </div>
-      )}
+
+        <div className={styles.bottomBar}>
+
+          <button
+            onClick={handleNext}
+            disabled={isConnecting}
+            className={`${styles.next} ${
+              isConnecting ? styles.disabled : ""
+            }`}
+          >
+            {isConnecting
+              ? "Connecting..."
+              : "Next"}
+          </button>
+
+          <input
+            type="text"
+            value={message}
+            placeholder="Type a message..."
+            className={styles.messageInput}
+            onChange={(e) =>
+              setMessage(e.target.value)
+            }
+            onKeyDown={(e) => {
+              if (e.key === "Enter") {
+                handleSendMessage();
+              }
+            }}
+          />
+
+          <button
+            onClick={handleSendMessage}
+            className={styles.send}
+          >
+            Send
+          </button>
+
+        </div>
+
+      </div>
+
     </div>
-  );
+
+  </div>
+);
 }

@@ -1,64 +1,65 @@
 .page{
     width:100%;
     height:100vh;
-    background:#101010;
+    background:#111827;
     color:#fff;
     display:flex;
     flex-direction:column;
     overflow:hidden;
 }
 
-/* ==========================
-   TOP
-========================== */
+/* ================= HEADER ================= */
 
 .topBar{
-    padding:10px 12px;
+    padding:12px;
     text-align:center;
     flex-shrink:0;
+    background:#1b2432;
+    border-bottom:1px solid rgba(255,255,255,.08);
 }
 
 .topBar h1{
     margin:0;
-    font-size:28px;
+    font-size:32px;
     font-weight:700;
+    background:linear-gradient(90deg,#3b82f6,#8b5cf6);
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
 }
 
 .status{
-    margin-top:4px;
-    color:#bdbdbd;
-    font-size:15px;
+    margin-top:6px;
+    color:#c8d2e2;
+    font-size:16px;
 }
 
-.connected{
-    margin-top:3px;
-    color:#25d366;
-    font-size:15px;
-    font-weight:600;
-}
+/* ================= CONTENT ================= */
 
-/* ==========================
-   VIDEO
-========================== */
-.videos{
+.content{
     flex:1;
-    min-height:0;
-    padding:10px;
-
     display:flex;
-    justify-content:center;
-    align-items:center;
+    gap:15px;
+    padding:15px;
+    overflow:hidden;
+    background:#111827;
+}
+
+/* ================= VIDEO ================= */
+
+.videoPanel{
+    width:42%;
+    display:flex;
 }
 
 .remoteBox{
     position:relative;
-
-    width:min(900px,90vw);
+    width:100%;
     height:100%;
-
-    background:#000;
-    border-radius:14px;
+    background:#0f172a;
+    border-radius:16px;
     overflow:hidden;
+    border:1px solid rgba(255,255,255,.08);
+    box-shadow:0 12px 35px rgba(0,0,0,.45);
 }
 
 .remoteBox video{
@@ -69,21 +70,21 @@
 
 .localBox{
     position:absolute;
+    left:15px;
+    bottom:15px;
 
-    right:20px;
-    bottom:20px;
-
-    width:220px;
-    height:150px;
+    width:180px;
+    height:130px;
 
     border-radius:12px;
     overflow:hidden;
 
-    border:3px solid white;
-    background:black;
+    border:2px solid rgba(255,255,255,.15);
+    background:#000;
 
-    box-shadow:0 8px 25px rgba(0,0,0,.45);
+    box-shadow:0 10px 30px rgba(0,0,0,.45);
 }
+
 .localBox video{
     width:100%;
     height:100%;
@@ -92,138 +93,268 @@
 
 /* Labels */
 
-.remoteBox::before{
-    content:"Stranger";
+.remoteLabel{
     position:absolute;
-    left:15px;
-    top:15px;
+    top:12px;
+    left:12px;
 
-    background:rgba(0,0,0,.55);
+    background:rgba(20,25,40,.75);
+    backdrop-filter:blur(10px);
 
     padding:6px 14px;
     border-radius:30px;
 
     font-size:14px;
-    z-index:10;
+    color:#fff;
 }
 
-.localBox::before{
-    content:"You";
+.localLabel{
     position:absolute;
-    left:8px;
     top:8px;
+    left:8px;
 
-    background:rgba(0,0,0,.55);
+    background:rgba(20,25,40,.75);
+    backdrop-filter:blur(10px);
 
-    padding:4px 9px;
+    padding:4px 10px;
     border-radius:20px;
 
     font-size:12px;
-    z-index:10;
+    color:#fff;
 }
 
-/* ==========================
-   BUTTONS
-========================== */
+/* ================= CHAT ================= */
+
+.chatPanel{
+    flex:1;
+    background:#1b2432;
+    color:#fff;
+
+    border-radius:16px;
+
+    display:flex;
+    flex-direction:column;
+
+    overflow:hidden;
+
+    border:1px solid rgba(255,255,255,.08);
+    box-shadow:0 12px 35px rgba(0,0,0,.35);
+}
+
+.messages{
+    flex:1;
+    overflow-y:auto;
+
+    padding:18px;
+
+    background:#111827;
+}
+
+/* bubbles */
+
+.myMessage{
+    margin-left:auto;
+
+    max-width:75%;
+
+    margin-bottom:10px;
+
+    background:linear-gradient(135deg,#2563eb,#7c3aed);
+    color:#fff;
+
+    padding:10px 16px;
+
+    border-radius:18px;
+    box-shadow:0 5px 15px rgba(59,130,246,.25);
+}
+
+.otherMessage{
+    max-width:75%;
+
+    margin-bottom:10px;
+
+    background:#273449;
+
+    color:#fff;
+
+    padding:10px 16px;
+
+    border-radius:18px;
+    border:1px solid rgba(255,255,255,.05);
+}
+
+/* ================= BOTTOM ================= */
 
 .bottomBar{
     display:flex;
-    gap:12px;
+    gap:10px;
 
     padding:12px;
-    flex-shrink:0;
+
+    background:#1b2432;
+
+    border-top:1px solid rgba(255,255,255,.08);
 }
-.button{
+
+.messageInput{
     flex:1;
 
-    min-height:60px;
+    height:48px;
+
+    border:1px solid rgba(255,255,255,.08);
+
+    border-radius:10px;
+
+    padding:0 15px;
+
+    font-size:16px;
+
+    background:#111827;
+    color:#fff;
+}
+
+.messageInput::placeholder{
+    color:#8d99ae;
+}
+
+.messageInput:focus{
+    outline:none;
+    border-color:#5b7cff;
+}
+
+.send{
+    width:120px;
 
     border:none;
-    border-radius:12px;
 
-    padding:16px;
+    border-radius:10px;
 
-    font-size:20px;
+    background:linear-gradient(135deg,#2563eb,#8b5cf6);
+    color:#fff;
+
+    font-size:18px;
     font-weight:700;
 
     cursor:pointer;
-}
-.button:hover{
-    transform:translateY(-2px);
+
+    transition:.25s;
 }
 
 .next{
-    background:#0078ff;
-    color:white;
+    width:130px;
+
+    border:none;
+
+    border-radius:10px;
+
+    background:#273449;
+    color:#fff;
+
+    font-size:18px;
+    font-weight:700;
+
+    cursor:pointer;
+
+    transition:.25s;
 }
 
-.wave{
-    background:#ff5a73;
-    color:white;
+.send:hover,
+.next:hover{
+    transform:translateY(-2px);
+    box-shadow:0 10px 22px rgba(59,130,246,.25);
 }
 
 .disabled{
     background:#555;
     cursor:not-allowed;
+    box-shadow:none;
 }
 
-/* ==========================
-   WAVE
-========================== */
+/* Scrollbar */
 
-.waveOverlay{
-    position:fixed;
-    inset:0;
-
-    display:flex;
-    justify-content:center;
-    align-items:center;
-
-    pointer-events:none;
-
-    font-size:120px;
-
-    animation:waveAnimation 1.3s ease-out;
+.messages::-webkit-scrollbar{
+    width:8px;
 }
 
-@keyframes waveAnimation{
-
-0%{
-    opacity:0;
-    transform:scale(.4);
+.messages::-webkit-scrollbar-track{
+    background:#111827;
 }
 
-30%{
-    opacity:1;
-    transform:scale(1.15);
+.messages::-webkit-scrollbar-thumb{
+    background:#3b4c69;
+    border-radius:20px;
 }
 
-100%{
-    opacity:0;
-    transform:scale(2);
+.messages::-webkit-scrollbar-thumb:hover{
+    background:#5b7cff;
 }
 
+/* ================= MOBILE ================= */
+
+@media (max-width:768px){
+
+.topBar h1{
+    font-size:24px;
 }
 
-/* ==========================
-   MOBILE
-========================== */
-/* 
-@media(min-width:769px){
+.content{
+    flex-direction:column;
+    padding:0;
+    gap:0;
+}
+
+.videoPanel{
+    width:100%;
+    height:45vh;
+}
+
+.remoteBox{
+    border-radius:0;
+}
+
+.localBox{
+    width:120px;
+    height:90px;
+
+    left:10px;
+    bottom:10px;
+}
+
+.chatPanel{
+    width:100%;
+    height:55vh;
+
+    border-radius:0;
+}
+
+.messages{
+    padding:12px;
+}
 
 .bottomBar{
-    width:900px;
-    margin:auto;
-
-    padding:10px;
+    gap:6px;
+    padding:8px;
 }
 
-.videos{
-    padding:10px;
+.messageInput{
+    height:42px;
+    font-size:15px;
 }
 
-.button{
-    max-width:400px;
+.send{
+    width:85px;
+    font-size:16px;
 }
 
-} */
+.next{
+    width:85px;
+    font-size:16px;
+}
+
+.myMessage,
+.otherMessage{
+    max-width:85%;
+    font-size:15px;
+}
+
+}

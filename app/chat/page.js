@@ -1,13 +1,14 @@
 "use client";
+import styles from './chat.module.css'
 
 import { useEffect, useState, useRef } from "react";
 import { ref, get, remove } from "firebase/database";
 import { db } from "@/lib/firebase";
 import { FiSend, FiSkipForward, FiSearch } from "react-icons/fi";
 
-import { listenForMatch, endMatch, findAndMatch } from "@/services/match";
-import { joinQueue } from "@/services/queue";
-import { sendMessage, listenMessages } from "@/services/messages";
+import { listenForMatch, endMatch, findAndMatch } from "@/services/text/match";
+import { joinQueue } from "@/services/text/queue";
+import { sendMessage, listenMessages } from "@/services/text/messages";
 
 export default function ChatPage() {
   const [userId, setUserId] = useState("");
@@ -205,29 +206,39 @@ export default function ChatPage() {
       });
     }
   }
-return (
-  <div className="chat-page">
-    <div className="chat-container">
-      <h1 className="chat-status-title">{status}</h1>
+
+
+
+  return (
+  <div className={styles.chatPage}>
+    <div className={styles.chatContainer}>
+
+      <h1 className={styles.chatStatusTitle}>
+        {status}
+      </h1>
 
       {isSearching && (
-        <div className="chat-spinner">⏳ Searching...</div>
+        <div className={styles.chatSpinner}>
+          ⏳ Searching...
+        </div>
       )}
 
       {match ? (
         <>
-          <div className="chat-box">
+          <div className={styles.chatBox}>
+
             {messages.length === 0 ? (
-              <p className="chat-empty-message">
+              <p className={styles.chatEmptyMessage}>
                 Say hello 👋
               </p>
             ) : (
               messages.map((msg) => {
+
                 if (msg.isSystem) {
                   return (
                     <div
                       key={msg.id}
-                      className="chat-system-message"
+                      className={styles.chatSystemMessage}
                     >
                       {msg.text}
                     </div>
@@ -237,7 +248,7 @@ return (
                 return (
                   <div
                     key={msg.id}
-                    className="chat-message-wrapper"
+                    className={styles.chatMessageWrapper}
                     style={{
                       justifyContent:
                         msg.senderId === userId
@@ -246,53 +257,58 @@ return (
                     }}
                   >
                     <div
-                      className={`chat-bubble ${
+                      className={`${styles.chatBubble} ${
                         msg.senderId === userId
-                          ? "sent"
-                          : "received"
+                          ? styles.sent
+                          : styles.received
                       }`}
                     >
                       {msg.text}
                     </div>
                   </div>
                 );
+
               })
             )}
 
             <div ref={messagesEndRef} />
+
           </div>
 
-          <div className="chat-input-row">
+          <div className={styles.chatInputRow}>
+
+            <button
+              className={styles.chatSendBtn}
+              onClick={handleSend}
+            >
+              Send
+            </button>
+
             <input
-              className="chat-input"
+              className={styles.chatInput}
               value={text}
               onChange={(e) => setText(e.target.value)}
               placeholder="Type a message..."
-              onKeyDown={(e) =>
-                e.key === "Enter" && handleSend()
-              }
+              onKeyDown={(e) => {
+                if (e.key === "Enter") {
+                  handleSend();
+                }
+              }}
             />
 
             <button
-  className="chat-send-btn"
-  onClick={handleSend}
->
-  <FiSend />
-  
-</button>
+              className={styles.chatNextBtn}
+              onClick={handleNext}
+            >
+              Next
+            </button>
 
-            <button
-  className="chat-next-btn"
-  onClick={handleNext}
->
-  <FiSkipForward />
- 
-</button>
           </div>
         </>
       ) : (
-        <div className="chat-waiting-container">
-          <p className="chat-waiting-text">
+        <div className={styles.chatWaitingContainer}>
+
+          <p className={styles.chatWaitingText}>
             {isSearching
               ? "Searching..."
               : "No match yet. Press Next to find someone."}
@@ -300,16 +316,18 @@ return (
 
           {!isSearching && (
             <button
-              className="chat-find-btn"
+              className={styles.chatFindBtn}
               onClick={handleNext}
             >
               Find a stranger
             </button>
           )}
+
         </div>
       )}
+
     </div>
   </div>
 );
- 
-};
+
+}
