@@ -10,18 +10,30 @@
 
 /* ================= HEADER ================= */
 
+/* ================= HEADER ================= */
 .topBar{
-    padding:12px;
-    text-align:center;
-    flex-shrink:0;
+
+     position:relative;
+    z-index:1000;
+  
+    padding:12px 20px;
+
     background:#1b2432;
+
     border-bottom:1px solid rgba(255,255,255,.08);
+
+    text-align:center;
 }
 
+.headerContent{
+    display:inline-block;
+}
 .topBar h1{
     margin:0;
+
     font-size:32px;
     font-weight:700;
+
     background:linear-gradient(90deg,#3b82f6,#8b5cf6);
     -webkit-background-clip:text;
     -webkit-text-fill-color:transparent;
@@ -32,6 +44,8 @@
     color:#c8d2e2;
     font-size:16px;
 }
+
+
 
 /* ================= CONTENT ================= */
 
@@ -357,4 +371,40 @@
     font-size:15px;
 }
 
+}
+
+.chatMenu{
+    position:absolute;
+    top:50%;
+    right:20px;
+    transform:translateY(-50%);
+    z-index:100;
+}
+.menu-dropdown{
+    position:absolute;
+
+    top:55px;
+    right:15px;
+
+    z-index:9999;
+
+    background:#1f2937;
+    border:1px solid #374151;
+    border-radius:10px;
+
+    overflow:hidden;
+
+    box-shadow:0 15px 35px rgba(0,0,0,.4);
+}
+
+
+.menuWrapper{
+    position:absolute;
+    top:12px;
+    right:20px;
+    z-index:9999;
+
+    display:flex;
+    justify-content:flex-end;
+    align-items:center;
 }

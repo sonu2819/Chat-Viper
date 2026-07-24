@@ -1,6 +1,6 @@
 "use client";
 import styles from './chat.module.css'
-
+import ChatMenu from "@/components/ChatMenu";
 import { useEffect, useState, useRef } from "react";
 import { ref, get, remove } from "firebase/database";
 import { db } from "@/lib/firebase";
@@ -211,17 +211,26 @@ export default function ChatPage() {
 
   return (
   <div className={styles.chatPage}>
-    <div className={styles.chatContainer}>
 
-      <h1 className={styles.chatStatusTitle}>
-        {status}
-      </h1>
+   
+
+
+    <div className={styles.chatContainer}>
+      
+<div className={styles.chatHeader}>
+  <ChatMenu />
+
+  <h1 className={styles.chatStatusTitle}>
+    {status}
+  </h1>
+</div>
 
       {isSearching && (
         <div className={styles.chatSpinner}>
           ⏳ Searching...
         </div>
       )}
+      
 
       {match ? (
         <>

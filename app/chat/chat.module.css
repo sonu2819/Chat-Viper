@@ -341,3 +341,32 @@
 }
 
 }
+
+
+.chatHeader{
+    position:relative;
+}
+
+.chatStatusTitle{
+    margin:0;
+    padding:20px 70px 20px 20px; /* leave space for menu */
+
+    text-align:center;
+
+    font-size:28px;
+    font-weight:700;
+    color:#fff;
+
+    background:linear-gradient(90deg,#2563eb,#8b5cf6);
+
+    border-bottom:1px solid rgba(255,255,255,.08);
+}
+
+.chatHeader :global(.chat-menu){
+    position:absolute;
+    top:50%;
+    right:18px;
+    transform:translateY(-50%);
+}
+
+

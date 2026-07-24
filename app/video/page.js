@@ -1,4 +1,5 @@
 "use client";
+import ChatMenu from "@/components/ChatMenu";
 import styles from "./video.module.css";
 import { useEffect, useRef, useState } from "react";
 import { get, ref } from "firebase/database";
@@ -404,8 +405,15 @@ const [message, setMessage] = useState("");
 
     {/* Header */}
     <div className={styles.topBar}>
-      <h1>Video Chat</h1>
-      <p className={styles.status}>{status}</p>
+     
+       <div className={styles.menuWrapper}>
+  <ChatMenu />
+</div>
+
+  <div className={styles.headerContent}>
+    <h1>Video Chat</h1>
+    <p className={styles.status}>{status}</p>
+  </div>
     </div>
 
     <div className={styles.content}>
