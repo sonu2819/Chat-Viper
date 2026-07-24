@@ -1,6 +1,7 @@
 // app/layout.js
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import { GoogleAnalytics } from "@next/third-parties/google";
 
 import LayoutContent from "@/components/LayoutContent";
 
@@ -155,6 +156,8 @@ export default function RootLayout({ children }) {
         <LayoutContent>
           {children}
         </LayoutContent>
+
+        <GoogleAnalytics gaId="G-D32LT4X605" />
       </body>
     </html>
   );
